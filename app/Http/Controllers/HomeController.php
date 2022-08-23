@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class HomeController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        $admin = Auth::User();
+        // dd($admin);
+        $pengguna = $admin->name;
+        $emels = $admin->email;
+        // dd($emels);
+
+
+        return view('home', ['name' => $pengguna]);
+        // return view('partials.nav', ['namesss' => $emels]);
+
+
+    //     return view('partials.nav')
+    //         ->with('name', $pengguna)
+    //         ->with('occupation', $emels);
+    }
+
+}
