@@ -33,34 +33,24 @@
 									<table class="table text-md-nowrap" id="example1">
 										<thead>
 											<tr>
-												<th class="wd-15p border-bottom-0">First name</th>
-												<th class="wd-15p border-bottom-0">Last name</th>
-												<th class="wd-20p border-bottom-0">Position</th>
-												<th class="wd-15p border-bottom-0">Start date</th>
-												<th class="wd-10p border-bottom-0">Salary</th>
-												<th class="wd-25p border-bottom-0">E-mail</th>
+												<th class="wd-5p border-bottom-0">Bil</th>
+												<th class="wd-10p border-bottom-0">Nama</th>
+												<th class="wd-15p border-bottom-0">Emel</th>
+												<th class="wd-15p border-bottom-0">Jabatan</th>
+												<th class="wd-10p border-bottom-0">No. Telefon</th>
+												{{-- <th class="wd-25p border-bottom-0">E-mail</th> --}}
 											</tr>
 										</thead>
 										<tbody>
-
-
-
+                                            @foreach ($pengguna as $user)
 											<tr>
-												<td>Zorita</td>
-												<td>Serrano</td>
-												<td>Software Engineer</td>
-												<td>2017/06/01</td>
-												<td>$115,000</td>
-												<td>z.serrano@datatables.net</td>
+												<td>{{ $loop->index+1 }}</td>
+												<td>{{ $user->name }}</td>
+												<td>{{ $user->email }}</td>
+												<td>{{ $user->jabatan }}</td>
+												<td>{{ $user->notelefon }}</td>
 											</tr>
-											<tr>
-												<td>Jennifer</td>
-												<td>Acosta</td>
-												<td>Junior Javascript Developer</td>
-												<td>2017/02/01</td>
-												<td>$75,650</td>
-												<td>j.acosta@datatables.net</td>
-											</tr>
+                                            @endforeach
 										</tbody>
 									</table>
 								</div>

@@ -11,7 +11,7 @@
     <div class="container-fluid">
         <div class="main-header-left ">
             <div class="responsive-logo">
-                <a href="index.html"><img src="../../assets/img/brand/logo2.png" class="logo-1"
+                <a href="index.html"><img src="../../assets/img/brand/logo.png" class="logo-1"
                         alt="logo"></a>
                 <a href="index.html"><img src="../../assets/img/brand/logo-white.png" class="dark-logo-1"
                         alt="logo"></a>
