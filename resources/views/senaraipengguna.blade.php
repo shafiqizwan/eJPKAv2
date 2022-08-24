@@ -1,22 +1,15 @@
 @extends('layouts.mainlayout')
 @section('content')
 
-{{-- setiap new page mesti pakai div class --}}
-<div class="main-content app-content">
-    <!-- container -->
-			<div class="container-fluid">
-
-				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between">
-					<div class="my-auto">
-						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Halaman Utama</h4><span
-								class="text-muted mt-1 tx-13 ms-2 mb-0">/ Senarai Pengguna</span>
-						</div>
-					</div>
-
-				</div>
-				<!-- breadcrumb -->
+<!-- breadcrumb -->
+<div class="breadcrumb-header justify-content-between">
+    <div class="my-auto">
+        <div class="d-flex">
+            <h4 class="content-title mb-0 my-auto">Halaman Utama</h4><span class="text-muted mt-1 tx-13 ms-2 mb-0">/ Senarai Pengguna</span>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
 
 				<!-- row opened -->
 				<div class="row row-sm">
@@ -60,9 +53,6 @@
 					<!--/div-->
 				</div>
 				<!-- /row -->
-			</div>
-			<!-- Container closed -->
 
-</div>
 @endsection
 

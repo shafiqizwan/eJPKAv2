@@ -1,12 +1,4 @@
-@inject('request', 'Illuminate\Http\Request');
-
-<!-- Loader -->
-<div id="global-loader">
-    <img src="../../assets/img/loader.svg" class="loader-img" alt="Loader">
-</div>
-<!-- /Loader -->
-
-<!-- main-header -->
+{{-- main-header --}}
 <div class="main-header sticky side-header nav nav-item">
     <div class="container-fluid">
         <div class="main-header-left ">
@@ -24,10 +16,6 @@
                 <a class="open-toggle" href="#"><i class="header-icon fe fe-align-left"></i></a>
                 <a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
             </div>
-            {{-- <div class="main-header-center ms-3 d-sm-none d-md-none d-lg-block">
-                <input class="form-control" placeholder="Search for anything..." type="search"> <button
-                    class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
-            </div> --}}
         </div>
         <div class="main-header-right">
             <ul class="nav nav-item  navbar-nav-right ms-auto">
@@ -48,11 +36,10 @@
                         <div class="main-header-profile bg-primary p-3">
                             <div class="d-flex wd-100p">
                                 <div class="main-img-user">
-                                    {{-- <img alt="" src="../../assets/img/faces/user-512.png" class=""> --}}
                                     <img alt="" src="{{ asset('assets/img/faces/user-512.png') }}" class="">
                                 </div>
                                 <div class="ms-3 my-auto">
-                                    <h6>{{ $request->user()->name }}</h6><span>{{ $request->user()->email }}</span>
+                                    <h6>{{ (auth()->user())->name }}</h6><span>{{ (auth()->user())->jabatan }}</span>
                                     {{-- <h6>{{ $em }}</h6> --}}
                                 </div>
                             </div>
@@ -65,11 +52,10 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                         </form>
-
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<!-- /main-header -->
+{{-- end main-header --}}
