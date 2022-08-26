@@ -16,6 +16,9 @@
     <!-- Bootstrap css -->
     <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!--- Internal Sweet-Alert css-->
+	<link href="../../assets/plugins/sweet-alert/sweetalert.css" rel="stylesheet">
+
     <!--- Internal Select2 css-->
 	<link href="../../assets/plugins/select2/css/select2.min.css" rel="stylesheet">
 

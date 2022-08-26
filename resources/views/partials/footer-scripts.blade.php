@@ -45,6 +45,14 @@
 <script src="../../assets/plugins/sidebar/sidebar.js"></script>
 <script src="../../assets/plugins/sidebar/sidebar-custom.js"></script>
 
+<!--Internal  Sweet-Alert js-->
+<script src="../../assets/plugins/sweet-alert/sweetalert.min.js"></script>
+<script src="../../assets/plugins/sweet-alert/jquery.sweet-alert.js"></script>
+
+<!-- Sweet-alert js  -->
+<script src="../../assets/plugins/sweet-alert/sweetalert.min.js"></script>
+<script src="../../assets/js/sweet-alert.js"></script>
+
 <!-- Sticky js -->
 <script src="../../assets/js/sticky.js"></script>
 
