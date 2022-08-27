@@ -60,20 +60,25 @@
                     </div>
 
                     <div class="form-group ">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <label class="form-label">Nombor Telefon Pejabat</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input id="notelefon" type="text" class="form-control" name="notelefon" value="{{ $user->notelefon }}">
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">Nombor Telefon Pejabat</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input id="notelefon" type="text" class="form-control" name="notelefon" value="{{ $user->notelefon }}">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary waves-effect waves-light">Kemaskini</button>
-                                            {{-- class="btn btn-primary waves-effect waves-light" --}}
+
+                        <div class="btn ripple btn-success-gradient" id='swal-success'>
+                            Click me !
+                        </div>
                     </div>
+
+                    
                 </form>
             </div>
 
@@ -82,3 +87,15 @@
 </div>
 
 @endsection
+
+<script>
+    var msg = '{{Session::get('success')}}';
+    var exist = '{{Session::has('success')}}';
+    if(exist){
+    //   alert(msg);
+
+      window.onload=function(){
+  document.getElementById("swal-success").click();
+};
+    }
+</script>
