@@ -53,6 +53,9 @@
 <script src="../../assets/plugins/sweet-alert/sweetalert.min.js"></script>
 <script src="../../assets/js/sweet-alert.js"></script>
 
+<!-- Internal Modal js-->
+<script src="../../assets/js/modal.js"></script>
+
 <!-- Sticky js -->
 <script src="../../assets/js/sticky.js"></script>
 
