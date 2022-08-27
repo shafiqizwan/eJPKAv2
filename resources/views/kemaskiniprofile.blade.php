@@ -88,7 +88,7 @@
 
 @endsection
 
-<script>
+<!-- <script>
     var msg = '{{Session::get('success')}}';
     var exist = '{{Session::has('success')}}';
     if(exist){
@@ -98,4 +98,4 @@
   document.getElementById("swal-success-kemaskini").click();
 };
     }
-</script>
+</script> -->

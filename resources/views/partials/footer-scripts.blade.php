@@ -61,3 +61,15 @@
 
 <!-- custom js -->
 <script src="../../assets/js/custom.js"></script>
+
+<script>
+    var msg = '{{Session::get('success')}}';
+    var exist = '{{Session::has('success')}}';
+    if(exist){
+    //   alert(msg);
+
+      window.onload=function(){
+  document.getElementById("swal-success-kemaskini").click();
+};
+    }
+</script>
