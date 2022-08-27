@@ -73,7 +73,7 @@
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary waves-effect waves-light">Kemaskini</button>
 
-                        <div class="btn ripple btn-success-gradient" id='swal-success'>
+                        <div class="btn ripple btn-success-gradient" id='swal-success-kemaskini' hidden="hidden">
                             Click me !
                         </div>
                     </div>
@@ -95,7 +95,7 @@
     //   alert(msg);
 
       window.onload=function(){
-  document.getElementById("swal-success").click();
+  document.getElementById("swal-success-kemaskini").click();
 };
     }
 </script>

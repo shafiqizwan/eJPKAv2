@@ -26,6 +26,18 @@ $(function(e) {
 			}
 		)
 	});
+
+	//kemaskini berjaya
+	$('#swal-success-kemaskini').click(function () {
+		swal(
+			{
+				title: 'Kemaskini berjaya!',
+				text: 'You clicked the button!',
+				type: 'success',
+				confirmButtonColor: '#57a94f'
+			}
+		)
+	});
 	
 	//Warning Message
 	$('#swal-warning').click(function () {
