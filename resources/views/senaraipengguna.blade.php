@@ -11,7 +11,7 @@
 
 	<div class="d-flex my-xl-auto right-content">
 		<div class="pe-1 mb-xl-0">
-			<button class="modal-effect btn btn-success btn-with-icon btn-block" data-bs-effect="effect-sign" data-bs-target="#modaldemo8" data-bs-toggle="modal"><i class="icon ion-md-add-circle"></i> Tambah</button>
+			<button class="modal-effect btn btn-success btn-with-icon btn-block" data-bs-effect="effect-scale" data-bs-target="#modaldemo8" data-bs-toggle="modal"><i class="icon ion-md-add-circle"></i> Tambah</button>
 		</div>
 	</div>
 </div>
@@ -21,12 +21,6 @@
 <div class="row row-sm">
 	<div class="col-xl-12">
 		<div class="card">
-			<div class="card-header pb-0">
-				<div class="d-flex justify-content-between">
-					<h4 class="card-title mg-b-0">Senarai Pengguna</h4>								
-				</div>
-			</div>
-
 			<div class="card-body">
 				<div class="table-responsive">
 					<table class="table text-md-nowrap" id="example1">
@@ -56,7 +50,7 @@
 				</div>
 			</div>
 		</div>
-	</div>				
+	</div>
 </div>
 
 <!-- Large Modal -->
@@ -75,7 +69,7 @@
 				<form method="POST" action="{{ route('updateprofile') }}" class="form-horizontal">
 					@csrf
 					@method('PUT')
-	
+
 						<div class="form-group ">
 							<div class="row">
 								<div class="col-md-3">
@@ -113,7 +107,7 @@
 										</div>
 									</div>
 						</div>
-	
+
 						<div class="form-group ">
 							<div class="row">
 								<div class="col-md-3">
@@ -124,14 +118,14 @@
 								</div>
 							</div>
 						</div>
-	
+
 						{{-- <div class="card-footer">
 							<button type="submit" class="btn btn-primary waves-effect waves-light">Kemaskini</button>
-	
-							
+
+
 						</div> --}}
-	
-						
+
+
 					</form>
 			</div>
 			<div class="modal-footer">
