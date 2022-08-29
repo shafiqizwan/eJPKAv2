@@ -65,8 +65,9 @@
 				<h6 class="modal-title">Tambah Pengguna</h6><button aria-label="Close" class="close"
 					data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 			</div>
+            <form method="POST" action="{{ route('senaraipengguna.store') }}" class="form-horizontal">
 			<div class="modal-body">
-				<form method="POST" action="{{ route('updateprofile') }}" class="form-horizontal">
+				{{-- <form method="POST" action="{{ route('senaraipengguna.store') }}" class="form-horizontal"> --}}
 					@csrf
 					@method('PUT')
 
@@ -76,7 +77,7 @@
 									<label class="form-label">Nama Pengguna: <span class="tx-danger">*</span></label>
 								</div>
 								<div class="col-md-9">
-									<input id="name" type="text" class="form-control" name="name" required value="{{ $user->name }}">
+									<input id="name" type="text" class="form-control" name="name" required value="name">
 														{{-- <input id="name" type="text" placeholder="masukkan nama pengguna" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> --}}
 									</div>
 								</div>
@@ -87,7 +88,7 @@
 											<label class="form-label">Emel: <span class="tx-danger">*</span></label>
 										</div>
 										<div class="col-md-9">
-											<input id="email" type="email" class="form-control" placeholder="Sila gunakan emel rasmi" required autocomplete="email" name="email" value="{{ $user->email }}">
+											<input id="email" type="email" class="form-control" placeholder="Sila gunakan emel rasmi" required autocomplete="email" name="email" value="email">
 												{{-- <input id="email" type="email" placeholder="Sila gunakan emel rasmi" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email"> --}}
 														{{-- @error('email')
 														<span class="invalid-feedback" role="alert">
@@ -103,7 +104,7 @@
 											<label class="form-label">Jabatan/Bahagian: <span class="tx-danger">*</span></label>
 										</div>
 										<div class="col-md-9">
-											<input id="jabatan" type="text" class="form-control" required name="jabatan" value="{{ $user->jabatan }}">
+											<input id="jabatan" type="text" class="form-control" required name="jabatan" value="jabatan">
 										</div>
 									</div>
 						</div>
@@ -114,7 +115,7 @@
 									<label class="form-label">Nombor Telefon Pejabat</label>
 								</div>
 								<div class="col-md-9">
-									<input id="notelefon" type="text" class="form-control" name="notelefon" value="{{ $user->notelefon }}">
+									<input id="notelefon" type="text" class="form-control" name="notelefon" value="notelefon">
 								</div>
 							</div>
 						</div>
@@ -126,16 +127,28 @@
 						</div> --}}
 
 
-					</form>
+					{{-- </form> --}}
+
+                    <div class="modal-footer">
+                        <button class="btn ripple btn-primary" type="submit">Simpan</button>
+                        <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Kembali</button>
+
+                        <div class="btn ripple btn-success-gradient" id='swal-success-kemaskini' hidden="hidden">
+                            Click me !
+                        </div>
+                    </div>
+
+
 			</div>
-			<div class="modal-footer">
+        </form>
+			{{-- <div class="modal-footer">
 				<button class="btn ripple btn-primary" type="button">Simpan</button>
 				<button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Kembali</button>
 
 				<div class="btn ripple btn-success-gradient" id='swal-success-kemaskini' hidden="hidden">
 					Click me !
 				</div>
-			</div>
+			</div> --}}
 		</div>
 	</div>
 </div>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\SenaraiPenggunaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/editprofile', [UserProfileController::class, 'edit'])->name('editprofile');
 Route::put('/editprofile', [UserProfileController::class, 'update'])->name('updateprofile');
 
-Route::get('/senaraipengguna', [PenggunaController::class, 'index'])->name('senaraipengguna');
+// Route::get('/senaraipengguna', [PenggunaController::class, 'index'])->name('senaraipengguna');
+
+Route::resource('senaraipengguna', SenaraiPenggunaController::class);
+
+
 
 
