@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\SenaraiPenggunaController;
+use App\Http\Controllers\UserListController;
+use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +30,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Route::resource('senaraipengguna', SenaraiPenggunaController::class);
+
 Route::get('/editprofile', [UserProfileController::class, 'edit'])->name('editprofile');
 Route::put('/editprofile', [UserProfileController::class, 'update'])->name('updateprofile');
 
 // Route::get('/senaraipengguna', [PenggunaController::class, 'index'])->name('senaraipengguna');
 
-Route::resource('senaraipengguna', SenaraiPenggunaController::class);
+Route::get('/userlist', [UserListController::class, 'index'])->name('index');
+Route::post('/adduser', [UserListController::class, 'create'])->name('add.user');
 
 
 

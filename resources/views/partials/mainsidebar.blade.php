@@ -59,7 +59,7 @@
                         class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     {{-- <li><a class="slide-item" href="{{ route('senaraipengguna') }}">Pengguna</a></li> --}}
-                    <li><a class="slide-item" href="{{ route('senaraipengguna.index') }}">Pengguna</a></li>
+                    <li><a class="slide-item" href="{{ url('userlist') }}">Pengguna</a></li>
                     <li><a class="slide-item" href="signup.html">Agensi</a></li>
                     <li><a class="slide-item" href="forgot.html">Jabatan</a></li>
                     <li><a class="slide-item" href="reset.html">Peranan</a></li>

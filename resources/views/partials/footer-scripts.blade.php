@@ -1,6 +1,8 @@
 <!-- Back-to-top -->
 <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 
+{{-- @yield('script-custom') --}}
+
 <!-- JQuery min js -->
 <script src="../../assets/plugins/jquery/jquery.min.js"></script>
 
@@ -65,6 +67,9 @@
 <!-- custom js -->
 <script src="../../assets/js/custom.js"></script>
 
+{{-- ajax --}}
+{{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> --}}
+
 <script>
     var msg = '{{Session::get('success')}}';
     var exist = '{{Session::has('success')}}';
@@ -75,4 +80,5 @@
   document.getElementById("swal-success-kemaskini").click();
 };
     }
+
 </script>
