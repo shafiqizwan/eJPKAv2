@@ -12,7 +12,7 @@
     {{-- button trigger modal --}}
 	<div class="d-flex my-xl-auto right-content">
 		<div class="pe-1 mb-xl-0">
-			<button class="modal-effect btn btn-success btn-with-icon btn-block" data-bs-effect="effect-scale" data-bs-target="#modaldemo8" data-bs-toggle="modal"><i class="icon ion-md-add-circle"></i> Tambah</button>
+			<button id="createNewUser" class="modal-effect btn btn-success btn-with-icon btn-block" data-bs-effect="effect-scale" data-bs-target="#modaldemo8" data-bs-toggle="modal"><i class="icon ion-md-add-circle"></i> Tambah</button>
 		</div>
 	</div>
 </div>
@@ -37,7 +37,7 @@
 						</thead>
 
 						<tbody>
-						@foreach ($pengguna as $user)
+						{{-- @foreach ($pengguna as $user)
 							<tr>
 								<td>{{ $loop->index+1 }}</td>
 								<td>{{ $user->name }}</td>
@@ -45,7 +45,7 @@
 								<td>{{ $user->jabatan }}</td>
 								<td>{{ $user->notelefon }}</td>
 							</tr>
-						@endforeach
+						@endforeach --}}
 						</tbody>
 					</table>
 				</div>
@@ -61,7 +61,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title">Tambah Pengguna</h6>
+                    <h6 class="modal-title" id="modalHeading"></h6>
                     <button aria-label="Close" class="close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -157,44 +157,71 @@
 {{-- <script src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js" type="text/javascript"></script> --}}
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-<script>
-$(document).ready(function () {
+<script type="text/javascript">
+// $(document).ready(function () {
 
+//     $.ajaxSetup({
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     }
+//     });
+
+//     // alert('hahaha');
+//     $(document).on('click', '.add_user', function(e){
+//         e.preventDefault();
+//         let name = $('#name').val();
+//         let email = $('#email').val();
+//         // console.log(name+email);
+
+//         $.ajax({
+//             type: "post",
+//             // headers: {
+//             //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//             // },
+//             url:"{{ route('add.user') }}",
+//             // method:'post',
+//             data:{name:name,
+//                 email:email
+//             },
+//             success:function(res){
+//                 console.log('success' + res);
+
+//             },error:function(err){
+//                 let error = err.responseJSON;
+//                 $.each(err.errors,function(index, value){
+//                     $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+
+//                 });
+//             }
+//         });
+//     })
+// });
+
+$(function () {
     $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
 
-    // alert('hahaha');
-    $(document).on('click', '.add_user', function(e){
-        e.preventDefault();
-        let name = $('#name').val();
-        let email = $('#email').val();
-        // console.log(name+email);
+    var table = $('.example1').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('books.index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'title', name: 'title'},
+            {data: 'author', name: 'author'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
+    });
 
-        $.ajax({
-            type: "post",
-            // headers: {
-            //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            // },
-            url:"{{ route('add.user') }}",
-            // method:'post',
-            data:{name:name,
-                email:email
-            },
-            success:function(res){
-                console.log('success' + res);
+    $('#createNewUser').click(function () {
+        $('#modalHeading').html("Create New User By Jquery");
+        $('#modaldemo8').modal('show');
 
-            },error:function(err){
-                let error = err.responseJSON;
-                $.each(err.errors,function(index, value){
-                    $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
+    });
 
-                });
-            }
-        });
-    })
 });
 </script>
 @endsection

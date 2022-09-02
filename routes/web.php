@@ -5,6 +5,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\SenaraiPenggunaController;
 use App\Http\Controllers\UserListController;
+use App\Http\Controllers\UserList2Controller;
 use Illuminate\Routing\Route as RoutingRoute;
 
 /*
@@ -37,8 +38,10 @@ Route::put('/editprofile', [UserProfileController::class, 'update'])->name('upda
 
 // Route::get('/senaraipengguna', [PenggunaController::class, 'index'])->name('senaraipengguna');
 
-Route::get('/userlist', [UserListController::class, 'index'])->name('index');
-Route::post('/adduser', [UserListController::class, 'create'])->name('add.user');
+// Route::get('/userlist', [UserListController::class, 'index'])->name('index');
+// Route::post('/adduser', [UserListController::class, 'create'])->name('add.user');
+
+Route::resource('userlist2', UserList2Controller::class);
 
 
 
