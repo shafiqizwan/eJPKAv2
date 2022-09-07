@@ -29,22 +29,10 @@ class UserList2Controller extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
 
-                    // $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editBook">Kemaskini</a>';
-                    // $btn = '<button type="button" id="postSubmitBtn" data-id="'.$row->id.'" class="btn ripple btn-primary add_user" >Simpan</button>';
-                    // $btn = '<i class="bd bd-gray-500 rounded-circle la la-cog"></i>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editBook">Edit</a>';
+                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Delete</a>';
 
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="typcn typcn-folder btn btn-primary btn-sm editBook"></a>';
-                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Padam</a>';
-
-                    // $btn = '<button class="btn btn-indigo btn-icon" data-id="'.$row->id.'"><i class="typcn typcn-folder"></i></button>';
-                    // $btn = $btn.'<button class="btn btn-success btn-icon" data-id="'.$row->id.'"><i class="typcn typcn-document-add"></i></button>';
-
-
-
-                    // $btn = '<button type="button" id="postSubmitBtn" data-id="'.$row->id.'" class="btn ripple btn-primary add_user" >Padam</button>';
-                    // $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Padam</a>';
                     return $btn;
-                    // <button type="button" id="postSubmitBtn" class="btn ripple btn-primary add_user" >Simpan</button>
                 })
                 ->rawColumns(['action'])
                 ->make(true);
