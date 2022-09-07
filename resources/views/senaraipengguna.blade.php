@@ -193,6 +193,29 @@ $(function () {
         $('#modaldemo8').modal('show');
     });
 
+    // save new record
+    $('#saveBtn').click(function (e) {
+        e.preventDefault();
+        $(this).html('Save');
+
+        $.ajax({
+            data: $('#addUserForm').serialize(),
+            url: "{{ route('userlist2.store') }}",
+            type: "POST",
+            dataType: 'json',
+            success: function (data) {
+                $('#addUserForm').trigger("reset");
+                $('#modaldemo8').modal('hide');
+                table.draw();
+            },
+
+            error: function (data) {
+                console.log('Error:', data);
+                $('#saveBtn').html('Simpan');
+            }
+        });
+    });
+
 });
 </script>
 @endsection

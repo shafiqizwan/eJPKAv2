@@ -53,7 +53,15 @@ class UserList2Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::updateOrCreate(['id' => $request->user_id],
+        ['name' => $request->name,
+        'password' => $request->password,
+        'email' => $request->email,
+        'jabatan' => $request->jabatan,
+        'notelefon' => $request->notelefon]);
+
+        return response()->json(['success' => 'Save success']);
+        session()->flash('success', 'user updated successfully');
     }
 
     /**
