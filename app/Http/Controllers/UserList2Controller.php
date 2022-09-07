@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-// use dataTables;
 use Yajra\DataTables\DataTables;
 
 class UserList2Controller extends Controller
@@ -17,14 +16,10 @@ class UserList2Controller extends Controller
     public function index(Request $request)
     {
         $books = User::latest()->get();
-        // echo $books;
-
-        // dd($books);
 
         if ($request->ajax()){
             $data = User::latest()->get();
 
-            // dd($request);
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
