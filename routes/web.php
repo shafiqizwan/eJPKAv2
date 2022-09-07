@@ -42,6 +42,9 @@ Route::put('/editprofile', [UserProfileController::class, 'update'])->name('upda
 // Route::post('/adduser', [UserListController::class, 'create'])->name('add.user');
 
 Route::resource('userlist2', UserList2Controller::class);
+// Route::resource('/userlist2', UserList2Controller::class)->names([
+//     'index' => 'userlist2.index'
+// ]);
 
 
 

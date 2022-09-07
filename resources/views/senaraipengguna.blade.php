@@ -24,14 +24,15 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table text-md-nowrap" id="example1">
+					<table class="table text-md-nowrap yajra-datatable" id="example1">
 						<thead>
 							<tr>
 								<th class="wd-5p border-bottom-0">Bil</th>
 								<th class="wd-10p border-bottom-0">Nama</th>
-								<th class="wd-15p border-bottom-0">Emel</th>
-								<th class="wd-15p border-bottom-0">Jabatan</th>
-								<th class="wd-10p border-bottom-0">No. Telefon</th>
+								<th class="wd-10p border-bottom-0">Emel</th>
+								<th class="wd-10p border-bottom-0">Jabatan</th>
+								<th class="wd-5p border-bottom-0">No. Telefon</th>
+                                <th class="wd-10p border-bottom-0">Tindakan</th>
 								{{-- <th class="wd-25p border-bottom-0">E-mail</th> --}}
 							</tr>
 						</thead>
@@ -77,7 +78,8 @@
                                 <label class="form-label">Nama Pengguna: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="name" id="name">
+                                <input type="text" class="form-control" name="name" id="name" >
+                                {{-- value="{{ $books->name }}" --}}
                             </div>
                         </div>
                     </div>
@@ -154,48 +156,17 @@
 @endsection
 
 @section('script-custom')
-{{-- <script src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js" type="text/javascript"></script> --}}
+<script src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js" type="text/javascript"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
 <script type="text/javascript">
-// $(document).ready(function () {
-
-//     $.ajaxSetup({
-//     headers: {
-//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//     }
-//     });
-
-//     // alert('hahaha');
-//     $(document).on('click', '.add_user', function(e){
-//         e.preventDefault();
-//         let name = $('#name').val();
-//         let email = $('#email').val();
-//         // console.log(name+email);
-
-//         $.ajax({
-//             type: "post",
-//             // headers: {
-//             //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//             // },
-//             url:"{{ route('add.user') }}",
-//             // method:'post',
-//             data:{name:name,
-//                 email:email
-//             },
-//             success:function(res){
-//                 console.log('success' + res);
-
-//             },error:function(err){
-//                 let error = err.responseJSON;
-//                 $.each(err.errors,function(index, value){
-//                     $('.errMsgContainer').append('<span class="text-danger">'+value+'</span>'+'<br>');
-
-//                 });
-//             }
-//         });
-//     })
-// });
 
 $(function () {
     $.ajaxSetup({
@@ -204,15 +175,17 @@ $(function () {
         }
     });
 
-    var table = $('.example1').DataTable({
+    var table = $('.yajra-datatable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('books.index') }}",
+        ajax: "{{ route('userlist2.index') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'title', name: 'title'},
-            {data: 'author', name: 'author'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
+            {data: 'jabatan', name: 'jabatan'},
+            {data: 'notelefon', name: 'notelefon'},
+            {data: 'action', name: 'action'},
         ]
     });
 
