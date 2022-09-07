@@ -47,29 +47,29 @@
 
 <!-- Modal effects -->
 <div class="modal fade" id="modaldemo8">
-    <form action="" id="addProductForm">
+    <form id="addUserForm" name="addUserForm">
+        <input type="hidden" name="user_id" id="user_id">
         @csrf
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content modal-content-demo">
+
+                {{-- modal header --}}
                 <div class="modal-header">
                     <h6 class="modal-title" id="modalHeading"></h6>
                     <button aria-label="Close" class="close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
+
+                {{-- modal body --}}
                 <div class="modal-body">
-                    {{-- <div class="errMsgContainer"> --}}
-                        <div class="col-md-3" id="errMsgContainer">
-                            {{-- <label class="form-label">Nama Pengguna: <span class="tx-danger">*</span></label> --}}
-                        </div>
 
                     {{-- nama pengguna --}}
-                    <div class="form-group ">
+                    <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
                                 <label class="form-label">Nama Pengguna: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="name" id="name" >
-                                {{-- value="{{ $books->name }}" --}}
+                                <input type="text" class="form-control" name="name" placeholder="masukkan nama pengguna" id="name" value="" required="">
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                                 <label class="form-label">Kata Laluan: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="password" class="form-control" name="password" id="password">
+                                <input type="password" class="form-control" name="password" id="password" value="" required="">
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                 <label class="form-label">Emel: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="email" class="form-control" name="email" id="email">
+                                <input type="email" class="form-control" name="email" id="email" value="" required>
                             </div>
 
                         </div>
@@ -106,7 +106,7 @@
                                 <label class="form-label">Jabatan/Bahagian: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="jabatan" id="jabatan">
+                                <input type="text" class="form-control" name="jabatan" id="jabatan" value="" required>
                             </div>
                         </div>
                     </div>
@@ -118,24 +118,22 @@
                                 <label class="form-label">Nombor Telefon Pejabat</label>
                             </div>
                             <div class="col-md-9">
-                                <input id="notelefon" type="text" class="form-control" name="notelefon">
+                                <input id="notelefon" type="text" class="form-control" name="notelefon" value="" required>
                             </div>
                         </div>
                     </div>
-
-
-
                 </div> <!-- end of modal body -->
 
                 {{-- footer --}}
                 <div class="modal-footer">
-                    <button type="button" id="postSubmitBtn" class="btn ripple btn-primary add_user" >Simpan</button>
+                    <button type="submit" id="saveBtn" value="create" class="btn ripple btn-primary add_user" >Simpan</button>
                     <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Kembali</button>
 
                     <div class="btn ripple btn-success-gradient" id='swal-success-kemaskini' hidden="hidden">
-                        Click me !
+                            Click me !
                     </div>
                 </div> <!-- end of footer -->
+
             </div>
         </div>
     </form>
@@ -165,6 +163,7 @@ $(function () {
         }
     });
 
+    // display data
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
@@ -179,10 +178,19 @@ $(function () {
         ]
     });
 
-    $('#createNewUser').click(function () {
-        $('#modalHeading').html("Create New User By Jquery");
-        $('#modaldemo8').modal('show');
+    function resetForm($userForm) {
+    $userForm.find('input:text, input:password, input:file, select, textarea').val('');
+    $userForm.find('input:radio, input:checkbox')
+         .removeAttr('checked').removeAttr('selected');
+}
 
+    // display modal when user click add button
+    $('#createNewUser').click(function () {
+        $('#saveBtn').val("create-user");
+        $('#user_id').val();
+        $('#addUserForm').trigger("reset");
+        $('#modalHeading').html("Tambah Pengguna");
+        $('#modaldemo8').modal('show');
     });
 
 });
