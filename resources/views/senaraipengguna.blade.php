@@ -216,6 +216,24 @@ $(function () {
         });
     });
 
+    // click edit button
+    $('body').on('click', '.editBook', function() {
+        var user_id = $(this).data('id');
+
+        $.get("{{ route('userlist2.index') }}" + '/' + user_id + '/edit', function (data) {
+            // dd(json_encode($data));
+                $('#modalHeading').html("Kemaskini Pengguna");
+                $('#saveBtn').val("edit-user");
+                $('#modaldemo8').modal('show');
+                $('#user_id').val(data.id);
+                $('#name').val(data.name);
+                $('#password').val(data.password);
+                $('#email').val(data.email);
+                $('#jabatan').val(data.jabatan);
+                $('#notelefon').val(data.notelefon);
+            })
+    });
+
 });
 </script>
 @endsection
