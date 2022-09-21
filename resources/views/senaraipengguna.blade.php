@@ -126,7 +126,7 @@
 
                 {{-- footer --}}
                 <div class="modal-footer">
-                    <button type="submit" id="saveBtn" value="create" class="btn ripple btn-primary add_user" >Simpan</button>
+                    <button type="submit" id="saveBtn" value="create" class="btn ripple btn-primary" >Simpan</button>
                     <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Kembali</button>
 
                     <div class="btn ripple btn-success-gradient" id='swal-success-kemaskini' hidden="hidden">
@@ -178,12 +178,6 @@ $(function () {
         ]
     });
 
-    function resetForm($userForm) {
-    $userForm.find('input:text, input:password, input:file, select, textarea').val('');
-    $userForm.find('input:radio, input:checkbox')
-         .removeAttr('checked').removeAttr('selected');
-}
-
     // display modal when user click add button
     $('#createNewUser').click(function () {
         $('#saveBtn').val("create-user");
@@ -193,33 +187,10 @@ $(function () {
         $('#modaldemo8').modal('show');
     });
 
-    // save new record
-    $('#saveBtn').click(function (e) {
-        e.preventDefault();
-        $(this).html('Save');
-
-        $.ajax({
-            data: $('#addUserForm').serialize(),
-            url: "{{ route('userlist2.store') }}",
-            type: "POST",
-            dataType: 'json',
-            success: function (data) {
-                $('#addUserForm').trigger("reset");
-                $('#modaldemo8').modal('hide');
-                table.draw();
-            },
-
-            error: function (data) {
-                console.log('Error:', data);
-                $('#saveBtn').html('Simpan');
-            }
-        });
-    });
-
     // click edit button
     $('body').on('click', '.editBook', function() {
         var user_id = $(this).data('id');
-
+        
         $.get("{{ route('userlist2.index') }}" + '/' + user_id + '/edit', function (data) {
             // dd(json_encode($data));
                 $('#modalHeading').html("Kemaskini Pengguna");
@@ -233,6 +204,36 @@ $(function () {
                 $('#notelefon').val(data.notelefon);
             })
     });
+
+    // save new record
+    $('#saveBtn').click(function (e) {
+        
+        e.preventDefault();
+        $(this).html('Save');
+
+        $.ajax({
+
+            data: $('#addUserForm').serialize(),
+            url: "{{ route('userlist2.store') }}",
+            type: "POST",
+            // headers: {'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')},
+            dataType: 'json',
+            success: function (data) {
+                $('#addUserForm').trigger("reset");
+                $('#modaldemo8').modal('hide');
+                table.draw();
+            },
+
+            error: function (data) {
+                console.log('Error:', data);
+                // alert(data);
+                $('#saveBtn').html('Simpan');
+            }
+        });
+
+    });
+
+    
 
 });
 </script>
