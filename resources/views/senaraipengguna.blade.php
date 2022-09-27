@@ -48,8 +48,10 @@
 <!-- Modal effects -->
 <div class="modal fade" id="modaldemo8">
     <form id="addUserForm" name="addUserForm">
+        <div id="error"></div>
         <input type="hidden" name="user_id" id="user_id">
         @csrf
+
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content modal-content-demo">
 
@@ -156,83 +158,41 @@
 
 <script type="text/javascript">
 
-$(function () {
+$(document).ready(function () {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 
-    // display data
     var table = $('.data-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ route('userlist2.index') }}",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
-            {data: 'jabatan', name: 'jabatan'},
-            {data: 'notelefon', name: 'notelefon'},
-            {data: 'action', name: 'action'},
-        ]
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('userlist2.index') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'name', name: 'name'},
+                    {data: 'email', name: 'email'},
+                    {data: 'jabatan', name: 'jabatan'},
+                    {data: 'notelefon', name: 'notelefon'},
+                    {data: 'action', name: 'action'},
+                ]
     });
 
-    function resetForm($userForm) {
-    $userForm.find('input:text, input:password, input:file, select, textarea').val('');
-    $userForm.find('input:radio, input:checkbox')
-         .removeAttr('checked').removeAttr('selected');
-}
-
-    // display modal when user click add button
+    // when user click add new button
     $('#createNewUser').click(function () {
-        $('#saveBtn').val("create-user");
-        $('#user_id').val();
+        $('#modalHeading').html('Tambah Pengguna');
+        $('#id').val('');
         $('#addUserForm').trigger("reset");
-        $('#modalHeading').html("Tambah Pengguna");
         $('#modaldemo8').modal('show');
+        $('#error').html('');
     });
 
-    // save new record
-    $('#saveBtn').click(function (e) {
-        e.preventDefault();
-        $(this).html('Save');
-
-        $.ajax({
-            data: $('#addUserForm').serialize(),
-            url: "{{ route('userlist2.store') }}",
-            type: "POST",
-            dataType: 'json',
-            success: function (data) {
-                $('#addUserForm').trigger("reset");
-                $('#modaldemo8').modal('hide');
-                table.draw();
-            },
-
-            error: function (data) {
-                console.log('Error:', data);
-                $('#saveBtn').html('Simpan');
-            }
-        });
-    });
-
-    // click edit button
     $('body').on('click', '.editBook', function() {
         var user_id = $(this).data('id');
 
-        $.get("{{ route('userlist2.index') }}" + '/' + user_id + '/edit', function (data) {
-            // dd(json_encode($data));
-                $('#modalHeading').html("Kemaskini Pengguna");
-                $('#saveBtn').val("edit-user");
-                $('#modaldemo8').modal('show');
-                $('#user_id').val(data.id);
-                $('#name').val(data.name);
-                $('#password').val(data.password);
-                $('#email').val(data.email);
-                $('#jabatan').val(data.jabatan);
-                $('#notelefon').val(data.notelefon);
-            })
-    });
+        alert(user_id);
+    })
 
 });
 </script>

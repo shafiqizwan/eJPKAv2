@@ -23,7 +23,7 @@ class User extends Authenticatable
         // 'email',
         // 'notelefon',
         // 'password',
-
+        'id',
         'name',
         'jabatan',
         'email',

@@ -41,10 +41,17 @@ Route::put('/editprofile', [UserProfileController::class, 'update'])->name('upda
 // Route::get('/userlist', [UserListController::class, 'index'])->name('index');
 // Route::post('/adduser', [UserListController::class, 'create'])->name('add.user');
 
-Route::resource('userlist2', UserList2Controller::class);
-// Route::resource('/userlist2', UserList2Controller::class)->names([
-//     'index' => 'userlist2.index'
-// ]);
+// Route::resource('userlist2', UserList2Controller::class);
+Route::resource('/userlist2', UserList2Controller::class)->names([
+    'index' => 'userlist2.index'
+]);
+
+// Route::prefix('userlist2')->group(function () {
+//     Route::get('index', [UserList2Controller::class, 'index']);
+//     Route::post('store', [UserList2Controller::class, 'store']);
+//     Route::post('edit', [UserList2Controller::class, 'edit']);
+//     Route::delete('destroy', [UserList2Controller::class, 'destroy']);
+// });
 
 
 
