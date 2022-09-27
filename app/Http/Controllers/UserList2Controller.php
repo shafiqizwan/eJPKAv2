@@ -15,8 +15,8 @@ class UserList2Controller extends Controller
      */
     public function index(Request $request)
     {
-        $books = User::latest()->get();
-
+        // $books = User::latest()->get();
+        $books = [];
 
         if ($request->ajax()){
             $data = User::latest()->get();
@@ -33,7 +33,6 @@ class UserList2Controller extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-
         return view('senaraipengguna', compact('books'));
     }
 
@@ -55,7 +54,6 @@ class UserList2Controller extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         User::updateOrCreate(['id' => $request->user_id],
         ['name' => $request->name,
         'password' => $request->password,
@@ -64,7 +62,7 @@ class UserList2Controller extends Controller
         'notelefon' => $request->notelefon]);
 
         return response()->json(['success' => 'Save success']);
-        // session()->flash('success', 'user updated successfully');
+        session()->flash('success', 'user updated successfully');
     }
 
     /**
@@ -86,8 +84,7 @@ class UserList2Controller extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return response()->json($user);
+        //
     }
 
     /**
