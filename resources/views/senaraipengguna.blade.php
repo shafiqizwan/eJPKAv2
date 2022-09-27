@@ -128,7 +128,7 @@
 
                 {{-- footer --}}
                 <div class="modal-footer">
-                    <button type="submit" id="saveBtn" value="create" class="btn ripple btn-primary add_user" >Simpan</button>
+                    <button type="submit" id="saveBtn" value="create" class="btn ripple btn-primary" >Simpan</button>
                     <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Kembali</button>
 
                     <div class="btn ripple btn-success-gradient" id='swal-success-kemaskini' hidden="hidden">
@@ -193,6 +193,8 @@ $(document).ready(function () {
 
         alert(user_id);
     })
+
+    // save new record
 
 });
 </script>
