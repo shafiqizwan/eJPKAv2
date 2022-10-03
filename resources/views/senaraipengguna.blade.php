@@ -47,10 +47,10 @@
 
 <!-- Modal effects -->
 <div class="modal fade" id="modaldemo8">
-    <form id="addUserForm" name="addUserForm">
+    <form id="addUserForm" name="addUserForm" method="POST" enctype="multipart/form-data">
         <div id="error"></div>
         <input type="hidden" name="user_id" id="user_id">
-        @csrf
+        {{-- @csrf --}}
 
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content modal-content-demo">
@@ -71,35 +71,35 @@
                                 <label class="form-label">Nama Pengguna: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="name" placeholder="masukkan nama pengguna" id="name" value="" required="">
+                                <input type="text" class="form-control" name="name" placeholder="masukkan nama pengguna" id="name">
                             </div>
                         </div>
                     </div>
 
                     {{-- password --}}
-                    <div class="form-group ">
+                    {{-- <div class="form-group ">
                         <div class="row">
                             <div class="col-md-3">
                                 <label class="form-label">Kata Laluan: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="password" class="form-control" name="password" id="password" value="" required="">
+                                <input type="password" class="form-control" name="password" id="password">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{-- emel --}}
-                    <div class="form-group ">
+                    {{-- <div class="form-group ">
                         <div class="row">
                             <div class="col-md-3">
                                 <label class="form-label">Emel: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="email" class="form-control" name="email" id="email" value="" required>
+                                <input type="email" class="form-control" name="email" id="email">
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{-- jabatan --}}
                     <div class="form-group ">
@@ -108,7 +108,7 @@
                                 <label class="form-label">Jabatan/Bahagian: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="jabatan" id="jabatan" value="" required>
+                                <input type="text" class="form-control" name="jabatan" id="jabatan">
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                                 <label class="form-label">Nombor Telefon Pejabat</label>
                             </div>
                             <div class="col-md-9">
-                                <input id="notelefon" type="text" class="form-control" name="notelefon" value="" required>
+                                <input id="notelefon" type="text" class="form-control" name="notelefon">
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,8 @@
 
                 {{-- footer --}}
                 <div class="modal-footer">
-                    <button type="submit" id="saveBtn" value="create" class="btn ripple btn-primary" >Simpan</button>
+                    {{-- <button type="submit" id="saveBtn" value="create" class="btn ripple btn-primary" >Simpan</button> --}}
+                    <button type="button" id="saveBtn" name="saveBtn" class="btn ripple btn-primary" >Simpan</button>
                     <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Kembali</button>
 
                     <div class="btn ripple btn-success-gradient" id='swal-success-kemaskini' hidden="hidden">
@@ -166,21 +167,22 @@ $(document).ready(function () {
     });
 
     var table = $('.data-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('userlist2.index') }}",
-                columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                    {data: 'jabatan', name: 'jabatan'},
-                    {data: 'notelefon', name: 'notelefon'},
-                    {data: 'action', name: 'action'},
-                ]
+        processing: true,
+        serverSide: true,
+        ajax: "{{ url('userlist2/index') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
+            {data: 'jabatan', name: 'jabatan'},
+            {data: 'notelefon', name: 'notelefon'},
+            {data: 'action', name: 'action'},
+        ]
     });
 
     // when user click add new button
     $('#createNewUser').click(function () {
+        $('#saveBtn').html('Tambah');
         $('#modalHeading').html('Tambah Pengguna');
         $('#id').val('');
         $('#addUserForm').trigger("reset");
@@ -188,15 +190,75 @@ $(document).ready(function () {
         $('#error').html('');
     });
 
+    // when user click edit button
     $('body').on('click', '.editBook', function() {
-        var user_id = $(this).data('id');
-
-        alert(user_id);
+        $('#saveBtn').html('Kemaskini');
+        var id = $(this).data('id');
+        // alert(id);
+        $.ajax({
+            type:"POST",
+            url: "{{ url('userlist2/edit') }}",
+            data: { id: id },
+            dataType: 'json',
+            success: function(data) {
+                $('#modalHeading').html('Kemaskini Pengguna');
+                $('#modaldemo8').modal('show');
+                $('#user_id').val(data.id);
+                $('#name').val(data.name);
+                $('#jabatan').val(data.jabatan);
+                $('#notelefon').val(data.notelefon);
+                $('#error').html('');
+            }
+        });
     })
 
-    // save new record
+    // save record
+    $('#saveBtn').click(function (e) {
+        e.preventDefault();
+        $(this).html('Sending..');
+        $.ajax({
+            data: $('#addUserForm').serialize(),
+            url: "{{ url('userlist2/store') }}",
+            type: "POST",
+            dataType: 'json',
+            success: function (data) {
+                $('#addUserForm').trigger("reset");
+                $('#modaldemo8').modal('hide');
+                table.draw();
+                toastr.success('Data saved successfully','Success');
 
+            },
+            error: function (data) {
+                console.log('Error:', data);
+                $('#error').html("<h6>Error laaa</h6>");
+                $('#saveBtn').html('Save Post Data');
+            }
+        });
+    });
+
+    // delete record
+    $('body').on('click', '.deleteBook', function () {
+        var id = $(this).data("id");
+        if (confirm("Are You sure want to delete this Post!") === true) {
+            $.ajax({
+                type: "DELETE",
+                url: "{{ url('userlist2/destroy')}}",
+                data:{
+                    id:id
+                },
+
+                success: function (data) {
+                    table.draw();
+                },
+
+                error: function (data) {
+                    console.log('Error:', data);
+                }});
+                }
+
+    });
 });
+
 </script>
 @endsection
 

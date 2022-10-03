@@ -58,8 +58,8 @@
                     </svg><span class="side-menu__label">Konfigurasi</span><i
                         class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('userlist2.index') }}">Pengguna</a></li>
-                    {{-- <li><a class="slide-item" href="{{ url('userlist2') }}">Pengguna</a></li> --}}
+                    {{-- <li><a class="slide-item" href="{{ route('userlist2.index') }}">Pengguna</a></li> --}}
+                    <li><a class="slide-item" href="{{ url('userlist2/index') }}">Pengguna</a></li>
                     <li><a class="slide-item" href="signup.html">Agensi</a></li>
                     <li><a class="slide-item" href="forgot.html">Jabatan</a></li>
                     <li><a class="slide-item" href="reset.html">Peranan</a></li>

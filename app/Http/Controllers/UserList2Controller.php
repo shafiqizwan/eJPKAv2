@@ -18,6 +18,8 @@ class UserList2Controller extends Controller
         // $books = User::latest()->get();
         $books = [];
 
+        // dd($books);
+
         if ($request->ajax()){
             $data = User::latest()->get();
             // dd(json_encode($data));
@@ -54,12 +56,15 @@ class UserList2Controller extends Controller
      */
     public function store(Request $request)
     {
-        User::updateOrCreate(['id' => $request->user_id],
-        ['name' => $request->name,
-        'password' => $request->password,
-        'email' => $request->email,
-        'jabatan' => $request->jabatan,
-        'notelefon' => $request->notelefon]);
+        // dd($request->user_id);
+        User::updateOrCreate(
+            ['id' => $request->user_id],
+            [
+                'name' => $request->name,
+                'jabatan' => $request->jabatan,
+                'notelefon' => $request->notelefon
+            ]
+        );
 
         return response()->json(['success' => 'Save success']);
         session()->flash('success', 'user updated successfully');
@@ -82,9 +87,18 @@ class UserList2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+
+        $where = [
+            'id' => $request->id
+        ];
+
+        $user = User::where($where)->first();
+
+        // dd($user);
+        // dd(json_decode($user));
+        return response()->json($user);
     }
 
     /**
@@ -105,8 +119,11 @@ class UserList2Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $post = User::where('id', $request->id)->delete();
+        return response()->json([
+            'success'=>'Post deleted successfully.'
+        ]);
     }
 }

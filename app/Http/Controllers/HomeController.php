@@ -32,12 +32,6 @@ class HomeController extends Controller
 
 
         return view('home', ['name' => $pengguna]);
-        // return view('partials.nav', ['namesss' => $emels]);
-
-
-    //     return view('partials.nav')
-    //         ->with('name', $pengguna)
-    //         ->with('occupation', $emels);
     }
 
 }
