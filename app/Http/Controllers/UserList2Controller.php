@@ -56,6 +56,13 @@ class UserList2Controller extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'jabatan' => 'required'
+
+        ]);
+
         // dd($request->user_id);
         User::updateOrCreate(
             ['id' => $request->user_id],
@@ -67,7 +74,7 @@ class UserList2Controller extends Controller
         );
 
         return response()->json(['success' => 'Save success']);
-        session()->flash('success', 'user updated successfully');
+        // session()->flash('success', 'user updated successfully');
     }
 
     /**

@@ -125,7 +125,7 @@
                                 <label class="form-label">Jabatan/Bahagian: <span class="tx-danger">*</span></label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="jabatan" id="jabatan" data-parsley-class-handler="#fnWrapper" required="">
+                                <input type="text" class="form-control" name="jabatan" id="jabatan">
                             </div>
                         </div>
                     </div>
@@ -177,7 +177,6 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -200,7 +199,6 @@ $(document).ready(function () {
 
     // when user click add new button
     $('#createNewUser').click(function () {
-        $('#error').removeClass('alert alert-danger');
         $('#saveBtn').html('Simpan');
         $('#modalHeading').html('Tambah Pengguna');
         $('#id').val('');
@@ -211,7 +209,6 @@ $(document).ready(function () {
 
     // when user click edit button
     $('body').on('click', '.editBook', function() {
-        $('#error').removeClass('alert alert-danger');
         $('#saveBtn').html('Simpan');
         var id = $(this).data('id');
         // alert(id);
@@ -235,26 +232,26 @@ $(document).ready(function () {
     // save record
     $('#saveBtn').click(function (e) {
         e.preventDefault();
+        $('#errorDiv').addClass('d-none');
         $(this).html('Simpan');
         $.ajax({
             data: $('#addUserForm').serialize(),
             url: "{{ url('userlist2/store') }}",
             type: "POST",
             dataType: 'json',
+            success: function (data) {
 
-            success: function(data) {
                 $('#addUserForm').trigger("reset");
                 $('#modaldemo8').modal('hide');
                 table.draw();
+                toastr.success('Data saved successfully','Success');
+
             },
+            error: function (data) {
 
-            error: function(reject) {
-                $('#error').addClass('alert alert-danger');
-                var response = $.parseJSON(reject.responseText);
-
-                $.each(response.errors, function(key, val) {
-                    $('#error').append('<li>' + val + '</li>');
-                })
+                console.log('Error:', data);
+                $('#error').html("<div class='alert alert-success' role='alert'>"+errors+"</div>");
+                $('#saveBtn').html('Simpan');
             }
         });
     });
