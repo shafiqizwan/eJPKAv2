@@ -7,6 +7,7 @@ use App\Http\Controllers\SenaraiPenggunaController;
 use App\Http\Controllers\UserListController;
 use App\Http\Controllers\UserList2Controller;
 use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\SenaraiAgensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,11 @@ Route::prefix('userlist2')->group(function () {
     Route::post('edit', [UserList2Controller::class, 'edit']);
     Route::delete('destroy', [UserList2Controller::class, 'destroy']);
 });
+
+Route::get('/senaraiagensi', [SenaraiAgensiController::class, 'index'])->name('senaraiagensi');
+Route::get('/fetchagensi', [SenaraiAgensiController::class, 'fetchagensi'])->name('fetchagensi');
+
+
 
 
 

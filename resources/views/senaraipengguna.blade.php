@@ -24,7 +24,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table text-md-nowrap data-table" id="example1">
+					<table class="table text-md-wrap data-table" id="example1">
                         {{-- <table class="table table-bordered data-table"> --}}
 						<thead>
 							<tr>

@@ -45,7 +45,7 @@ class UserProfileController extends Controller
         $user->update($request->all());
         // $request->all()->save();
 
-        session()->flash('success', 'user updated successfully');
+        session()->flash('succeed', 'user updated successfully');
 
         return redirect()->back() ->with('success', 'Updated!');;
     }

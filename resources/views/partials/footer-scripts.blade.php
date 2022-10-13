@@ -73,12 +73,20 @@
 <script>
     var msg = '{{Session::get('success')}}';
     var exist = '{{Session::has('success')}}';
+    var exist2 = '{{Session::has('succeed')}}';
     if(exist){
     //   alert(msg);
 
       window.onload=function(){
   document.getElementById("swal-success-kemaskini").click();
 };
+    }
+    else if(exist2){
+
+        window.onload=function(){
+  document.getElementById("swal-success").click();
+};
+
     }
 
 </script>

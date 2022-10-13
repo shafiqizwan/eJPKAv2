@@ -88,14 +88,26 @@
 
 @endsection
 
-<!-- <script>
-    var msg = '{{Session::get('success')}}';
-    var exist = '{{Session::has('success')}}';
-    if(exist){
-    //   alert(msg);
+{{-- @section('script-custom')
 
-      window.onload=function(){
-  document.getElementById("swal-success-kemaskini").click();
-};
-    }
-</script> -->
+<script>
+
+    $(document).ready(function () {
+
+        var msg = '{{Session::get('success')}}';
+        var exist = '{{Session::has('success')}}';
+        if(exist)
+        {
+            alert(msg);
+        window.onload=function()
+        {
+            document.getElementById("swal-success-kemaskini").click();
+        };
+        }
+
+    });
+
+
+</script>
+
+@endsection --}}
