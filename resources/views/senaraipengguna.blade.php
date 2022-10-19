@@ -15,6 +15,12 @@
 			<button id="createNewUser" class="modal-effect btn btn-success btn-with-icon btn-block" data-bs-effect="effect-scale" data-bs-target="#modaldemo8" data-bs-toggle="modal"><i class="icon ion-md-add-circle"></i> Tambah</button>
 		</div>
 	</div>
+
+    {{-- <div class="d-flex my-xl-auto right-content">
+		<div class="pe-1 mb-xl-0">
+			<button id="test" class="modal-effect btn btn-success btn-with-icon btn-block" data-bs-effect="effect-scale"><i class="icon ion-md-add-circle"></i> Test</button>
+		</div>
+	</div> --}}
 </div>
 <!-- breadcrumb -->
 
@@ -246,6 +252,15 @@ $(document).ready(function () {
                 $('#addUserForm').trigger("reset");
                 $('#modaldemo8').modal('hide');
                 table.draw();
+
+                swal(
+                    {
+                        title: 'Kemaskini berjaya!',
+                        text: 'Data telah disimpan',
+                        type: 'success',
+                        confirmButtonColor: '#57a94f'
+                    }
+		        );
             },
 
             error: function(reject) {
@@ -280,6 +295,7 @@ $(document).ready(function () {
                 }
 
     });
+
 });
 
 </script>
