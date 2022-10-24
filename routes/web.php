@@ -45,8 +45,14 @@ Route::prefix('userlist2')->group(function () {
     Route::delete('destroy', [UserList2Controller::class, 'destroy']);
 });
 
-Route::get('/senaraiagensi', [SenaraiAgensiController::class, 'index'])->name('senaraiagensi');
-Route::get('/fetchagensi', [SenaraiAgensiController::class, 'fetchagensi'])->name('fetchagensi');
+Route::prefix('agensi')->group(function () {
+    Route::get('index', [SenaraiAgensiController::class, 'index']);
+    Route::post('store', [SenaraiAgensiController::class, 'store']);
+    Route::post('edit', [SenaraiAgensiController::class, 'edit']);
+    Route::delete('destroy', [SenaraiAgensiController::class, 'destroy']);
+});
+
+
 
 
 

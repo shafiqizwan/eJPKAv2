@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Agensi;
+use Yajra\DataTables\DataTables;
 
 class SenaraiAgensiController extends Controller
 {
@@ -12,18 +13,30 @@ class SenaraiAgensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // $books = User::latest()->get();
+        // $books = [];
+        // dd($books);
+
+        // dd($books);
+
+        if ($request->ajax()){
+            $data = Agensi::latest()->get();
+            // dd(json_encode($data));
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editBook">Kemaskini</a>';
+                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Padam</a>';
+
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('senaraiagensi');
-    }
-
-    public function fetchagensi()
-    {
-        $agensi = User::all();
-
-        return response()->json([
-            'users'=>$agensi,
-        ]);
     }
 
     /**
@@ -44,7 +57,22 @@ class SenaraiAgensiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request);
+
+        // $request->validate([
+        //     'agensi' => 'required'
+
+        // ]);
+
+        Agensi::updateOrCreate(
+            ['id' => $request->user_id],
+            [
+                'nama_agensi' => $request->agensi
+            ]
+        );
+
+        return response()->json(['success' => 'Save success']);
     }
 
     /**
@@ -64,9 +92,18 @@ class SenaraiAgensiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+
+        $where = [
+            'id' => $request->id
+        ];
+
+        $user = Agensi::where($where)->first();
+
+        // dd($user);
+        // dd(json_decode($user));
+        return response()->json($user);
     }
 
     /**
@@ -87,8 +124,11 @@ class SenaraiAgensiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $post = Agensi::where('id', $request->id)->delete();
+        return response()->json([
+            'success'=>'Post deleted successfully.'
+        ]);
     }
 }

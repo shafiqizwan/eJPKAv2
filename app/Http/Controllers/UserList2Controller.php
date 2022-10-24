@@ -56,6 +56,7 @@ class UserList2Controller extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
 
         $request->validate([
             'name' => 'required',
@@ -69,7 +70,8 @@ class UserList2Controller extends Controller
             [
                 'name' => $request->name,
                 'jabatan' => $request->jabatan,
-                'notelefon' => $request->notelefon
+                'notelefon' => $request->notelefon,
+                'email' => $request->email
             ]
         );
 

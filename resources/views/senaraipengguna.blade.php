@@ -112,7 +112,7 @@
                     </div> --}}
 
                     {{-- emel --}}
-                    {{-- <div class="form-group ">
+                    <div class="form-group ">
                         <div class="row">
                             <div class="col-md-3">
                                 <label class="form-label">Emel: <span class="tx-danger">*</span></label>
@@ -122,7 +122,7 @@
                             </div>
 
                         </div>
-                    </div> --}}
+                    </div>
 
                     {{-- jabatan --}}
                     <div class="form-group ">
@@ -241,6 +241,8 @@ $(document).ready(function () {
     // save record
     $('#saveBtn').click(function (e) {
         e.preventDefault();
+
+
         $(this).html('Simpan');
         $.ajax({
             data: $('#addUserForm').serialize(),

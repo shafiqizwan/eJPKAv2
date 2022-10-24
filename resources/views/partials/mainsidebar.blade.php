@@ -60,7 +60,7 @@
                 <ul class="slide-menu">
                     {{-- <li><a class="slide-item" href="{{ route('userlist2.index') }}">Pengguna</a></li> --}}
                     <li><a class="slide-item" href="{{ url('userlist2/index') }}">Pengguna</a></li>
-                    <li><a class="slide-item" href="{{ url('senaraiagensi') }}">Agensi</a></li>
+                    <li><a class="slide-item" href="{{ url('agensi/index') }}">Agensi</a></li>
                     <li><a class="slide-item" href="forgot.html">Jabatan</a></li>
                     <li><a class="slide-item" href="reset.html">Peranan</a></li>
                 </ul>
