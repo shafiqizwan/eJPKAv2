@@ -15,12 +15,6 @@ class SenaraiAgensiController extends Controller
      */
     public function index(Request $request)
     {
-        // $books = User::latest()->get();
-        // $books = [];
-        // dd($books);
-
-        // dd($books);
-
         if ($request->ajax()){
             $data = Agensi::latest()->get();
             // dd(json_encode($data));
@@ -101,8 +95,6 @@ class SenaraiAgensiController extends Controller
 
         $user = Agensi::where($where)->first();
 
-        // dd($user);
-        // dd(json_decode($user));
         return response()->json($user);
     }
 
