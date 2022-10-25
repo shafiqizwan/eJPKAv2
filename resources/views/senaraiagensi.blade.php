@@ -218,23 +218,36 @@ $(document).ready(function () {
     // delete record
     $('body').on('click', '.deleteBook', function () {
         var id = $(this).data("id");
-        if (confirm("Are You sure want to delete this Post!") === true) {
+
+        swal({
+            title: "Adakah anda pasti?",
+            text: "Maklumat yang dipadam tidak akan dapat dikembalikan.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn btn-danger",
+            cancelButtonText: "Batal",
+            confirmButtonText: "Padam",
+            closeOnConfirm: false
+        },
+
+        function(){
+
             $.ajax({
-                type: "DELETE",
-                url: "{{ url('agensi/destroy')}}",
-                data:{
-                    id:id
-                },
+            type: "DELETE",
+            url: "{{ url('agensi/destroy')}}",
+            data:{
+            id:id
+            },
 
-                success: function (data) {
-                    table.draw();
-                },
+            success: function (data) {
+            table.draw();
+            swal("Maklumat dipadam!", "Maklumat telah berjaya dipadam.", "success");
+            },
 
-                error: function (data) {
-                    console.log('Error:', data);
-                }});
-                }
-
+            error: function (data) {
+            console.log('Error:', data);
+            }});
+        });
     });
 
 });
