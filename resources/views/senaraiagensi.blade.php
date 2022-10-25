@@ -231,7 +231,6 @@ $(document).ready(function () {
         },
 
         function(){
-
             $.ajax({
             type: "DELETE",
             url: "{{ url('agensi/destroy')}}",
