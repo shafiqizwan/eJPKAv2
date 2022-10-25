@@ -94,7 +94,7 @@
                                 {{-- <input class="form-control" data-parsley-class-handler="#fnWrapper" name="firstname" placeholder="Enter firstname" required="" type="text"> --}}
                             </div>
                         </div>
-                    </div>                   
+                    </div>
                 </div> <!-- end of modal body -->
 
                 {{-- footer --}}
@@ -221,7 +221,7 @@ $(document).ready(function () {
         if (confirm("Are You sure want to delete this Post!") === true) {
             $.ajax({
                 type: "DELETE",
-                url: "{{ url('userlist2/destroy')}}",
+                url: "{{ url('agensi/destroy')}}",
                 data:{
                     id:id
                 },
