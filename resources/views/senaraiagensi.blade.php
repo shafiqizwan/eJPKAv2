@@ -1,4 +1,5 @@
 @extends('layouts.mainlayout2')
+
 @section('content')
 
 <!-- breadcrumb -->
@@ -67,21 +68,7 @@
 
                 {{-- modal body --}}
                 <div class="modal-body">
-
                     <div id="error"></div>
-
-                    {{-- this div to display error message during validation --}}
-                    {{-- <div id="errorDiv" class="alert alert-success d-none" role="alert">
-                        <button aria-label="Close" class="close" data-bs-dismiss="alert"
-                            type="button" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Well done!</strong> You successfully read this important alert
-                        message.
-                        <span id="errorMessages">
-
-                        </span>
-                    </div> --}}
 
                     {{-- nama pengguna --}}
                     <div class="form-group">
@@ -99,7 +86,6 @@
 
                 {{-- footer --}}
                 <div class="modal-footer">
-                    {{-- <button type="submit" id="saveBtn" value="create" class="btn ripple btn-primary" >Simpan</button> --}}
                     <button type="button" id="saveBtn" name="saveBtn" class="btn ripple btn-primary" >Simpan</button>
                     <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Kembali</button>
                 </div> <!-- end of footer -->
@@ -109,6 +95,12 @@
     </form>
 </div>
 <!-- End Modal effects-->
+<style>
+    .row {
+        flex-direction: column !important;
+    }
+</style>
+
 
 <!--End Large Modal -->
 @endsection

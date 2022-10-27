@@ -15,15 +15,15 @@ class SenaraiAgensiController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()){
+        if ($request->ajax()) {
             $data = Agensi::latest()->get();
             // dd(json_encode($data));
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('action', function($row){
+                ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editBook">Kemaskini</a>';
-                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Padam</a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editBook">Kemaskini</a>';
+                    $btn = $btn . ' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $row->id . '" data-original-title="Delete" class="btn btn-danger btn-sm deleteBook">Padam</a>';
 
                     return $btn;
                 })
@@ -52,12 +52,12 @@ class SenaraiAgensiController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request);
+        $request->validate([
+            'agensi' => 'required'
 
-        // $request->validate([
-        //     'agensi' => 'required'
-
-        // ]);
+        ], [
+            'agensi.required' => 'Sila masukkan nama agensi'
+        ]);
 
         Agensi::updateOrCreate(
             ['id' => $request->user_id],
@@ -120,7 +120,7 @@ class SenaraiAgensiController extends Controller
     {
         $post = Agensi::where('id', $request->id)->delete();
         return response()->json([
-            'success'=>'Post deleted successfully.'
+            'success' => 'Post deleted successfully.'
         ]);
     }
 }
