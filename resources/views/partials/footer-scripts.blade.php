@@ -77,7 +77,17 @@
     //   alert(msg);
 
       window.onload=function(){
-  document.getElementById("swal-success-kemaskini").click();
+//   document.getElementById("swal-success-kemaskini").click();
+
+        swal
+        (
+            {
+                title: 'Berjaya!',
+                text: 'Data telah disimpan',
+                type: 'success',
+                confirmButtonColor: '#57a94f'
+            }
+        );
 };
     }
 
